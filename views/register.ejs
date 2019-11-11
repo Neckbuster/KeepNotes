@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="stylesheet/login.css">
+</head>
+<body>
+	
+	<div class="card__section">
+		<h1>Register</h1>
+		<form action="/register" method="POST">
+			<div class="inp">
+				<i class="fa fa-user" aria-hidden="true" fa-1x></i>
+				<input type="text" name="username" placeholder="Enter Username">
+			</div>
+			<div class="inp">
+				<i class="fa fa-user" aria-hidden="true" fa-1x></i>
+				<input type="text" name="name" placeholder="Enter Full Name">
+			</div>
+			<div class="inp">
+				<i class="fa fa-envelope" aria-hidden="true"></i>
+				<input type="email" name="email" placeholder="Enter Email">
+			</div>
+			<div class="inp">
+				<i class="fa fa-lock" aria-hidden="true"></i>
+				<input type="password" name="password" placeholder="Enter Password">
+			</div>
+			<a class="btn-primary" href="#">REGISTER</a>
+		</form>		
+	</div>
+<script type="text/javascript">
+	document.querySelector('.btn-primary').addEventListener('click',function(){
+		document.querySelector('form').submit();
+	})
+</script>
+</body>
+</html>

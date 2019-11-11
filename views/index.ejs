@@ -1,0 +1,83 @@
+<!-- web3js -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Profile</title>
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="stylesheet/profile.css">
+</head>
+
+<body>
+<div class="container">
+	<div class="navbar">
+			<div ><a id="logout" href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a></div>
+			<div class="nav__container">
+				<div class="paitent_name"><%=notes.authorName%></div>
+				<div class="paitent_photo">	&nbsp;
+				</div>	
+		</div>
+	</div>
+	<div class="subsection">
+		<div class="sidebar">
+			<li class="selected"><i class="fa fa-sticky-note" aria-hidden="true"></i>Notes</li>
+			<li><i class="fa fa-trash" aria-hidden="true"></i>Bin</li>
+		</div>
+		<div class="main_content" >
+			<div class="tool__bar">
+				<a id="tool__bar--text" href="#popup"><i class="fa fa-pencil" aria-hidden="true"></i>Create Note!</a>
+			</div>
+			<div class="wrapper__section">
+				<%notes.forEach(function(note){%>
+				<div class="wrapper" style="background-color:<%=note.color%>">
+					<div class="pin"><i class="fa fa-thumb-tack fa-2x" aria-hidden="true"></i></div>
+					<img class="img__content" src="/images/<%=note.image%>">
+					<h2><%=note.title%></h2>
+					<p><%=note.body%></p>
+				</div>
+				<%})%>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="popup" id="popup">
+	<div class="card__section">
+		<a href="/" id="close">X</a>
+		<form action="/create" method="POST">
+			<input type="text" name="notes[title]" placeholder="Title...">
+			<input type="text" name="notes[body]" class="content" placeholder="Enter Contents">
+			    <input type="file" name="notes[image]">
+			    <input type="color" name="notes[color]">
+				<a  class="btn-green" href="#">Create</a>
+			</div>
+		</form>
+	</div>		
+</div>
+<div class="popup" id="edit">
+	<div class="card__section">
+		<form action="/create" method="POST">
+			<input type="text" name="notes[title]" placeholder="Title...">
+			<input type="text" name="notes[body]" class="content" placeholder="Enter Contents">
+			<input type="file" name="notes[image]">
+			<input type="color" name="notes[color]">
+		</form>
+	</div>		
+</div>
+<script type="text/javascript">
+	var logout = document.querySelector("#logout");
+	logout.addEventListener("click",function(){
+	});
+	var pin = document.querySelectorAll(".pin");
+	pin.forEach(function(p){
+		p.addEventListener("click",function(){
+		p.classList.toggle('activated');
+		p.closest(".wrapper").classList.toggle('pinned')
+		});
+	});
+	document.querySelector(".btn-green").addEventListener("click",function(){
+		document.querySelector('form').submit();
+	})
+
+</script>
+</body>
+</html>
